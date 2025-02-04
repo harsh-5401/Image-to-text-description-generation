@@ -1,0 +1,14 @@
+path: ../datasets/coco8 # dataset root dir
+train: ./images/train
+val: ./images/val
+# test: ./images/test
+
+nc: 4
+names: ['cats', 'dog', 'elephant', 'human']
+
+roboflow:
+  workspace: object-detection-775ug
+  project: yolo-v11
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/object-detection-775ug/yolo-v11/dataset/1
