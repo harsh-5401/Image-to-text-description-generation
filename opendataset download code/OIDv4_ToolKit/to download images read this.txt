@@ -1,0 +1,4 @@
+run this command line in this repo folder
+
+
+python main.py downloader --classes Cat Dog Elephant --type_csv train --multiclass 1 --limit 10
