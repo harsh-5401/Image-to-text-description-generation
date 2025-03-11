@@ -2,6 +2,12 @@ import tensorflow as tf
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.preprocessing import image
 import numpy as np
+np.set_printoptions(threshold=np.inf)
+import os
+
+# Set environment variable to suppress oneDNN custom operations
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
 
 def load_and_preprocess_image(image_path):
     """
@@ -21,6 +27,7 @@ def load_and_preprocess_image(image_path):
     
     return processed_img
 
+
 def extract_features(image_path):
     """
     Extract features from image using VGG16
@@ -33,22 +40,28 @@ def extract_features(image_path):
     
     # Extract features
     features = model.predict(processed_img)
-    
+
+    print("before flattening:", features.shape)
+
     # Flatten the features
     flattened_features = features.flatten()
     
+    # Print the entire feature vector
+    # print("Feature vector:", flattened_features)
+    
     return flattened_features
+
 
 # Example usage
 if __name__ == "__main__":
     # Replace with your image path
-    image_path = "path/to/your/image.jpg"
+    image_path = "D:\\codes\\Third-year-Project\\feature extraction\\flicker 8k dataset\\archive\\Images\\10815824_2997e03d76.jpg"
     
     try:
         # Extract features
         features = extract_features(image_path)
         print(f"Feature vector shape: {features.shape}")
-        print(f"First few features: {features[:10]}")
+        print(features)  # Should print (1, 4096)
         
     except Exception as e:
         print(f"Error processing image: {str(e)}")
